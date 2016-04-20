@@ -1,0 +1,17 @@
+package my.prep.practice;
+
+public class MinimumCoins {
+	
+	public int minCoins(int value,int coin,int coin_array[]) {
+		if(coin > value) {
+			return 0;
+		}
+		int min = 0;
+		for (int i=0; i<=coin_array.length;i++) {
+			if(coin !=coin_array[i]) {
+				int result =  minCoins(value-coin, coin_array[i], coin_array);
+				if(result < min)  min = result;
+			}
+		}
+	}
+}

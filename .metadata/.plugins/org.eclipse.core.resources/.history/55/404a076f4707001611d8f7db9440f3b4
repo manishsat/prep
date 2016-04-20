@@ -1,0 +1,33 @@
+package my.prep.practice;
+
+public class MinimumCoins {
+	
+	private int coin_array[];
+	public MinimumCoins(int coin_array[]) {
+		this.coin_array = coin_array;
+	}
+	public int minCoins(int bill) {
+		if(bill<=0) {
+			return 0;
+		}
+		int min = Integer.MAX_VALUE;
+		//loop thru all coins and get minimum 
+		for (int i=0; i<=coin_array.length;i++) {
+			if( bill <= coin_array[i]) { // ignore coins bigger then bill
+				int result =  minCoins(bill-coin_array[i]);
+				if(result < min)  min = result;
+			}
+		}
+		return 1+ min;
+	}
+	
+	
+	
+	
+	public static void main(String[] args) {
+		int coin_array[] = {1,2,3};
+		int bill = 5;
+		MinimumCoins mc = new MinimumCoins(coin_array);
+		System.out.println(mc.minCoins(5));
+	}
+}
