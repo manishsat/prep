@@ -1,0 +1,10 @@
+http://www.bowdoin.edu/~ltoma/teaching/cs231/fall07/Problems/
+http://www.radford.edu/~nokie/classes/360/dynprog.html
+https://www.utdallas.edu/~scniu/OPRE-6201/documents/DP2-Path_Problem.html
+https://web.stanford.edu/class/cs97si/assn4.html
+
+Princeton Univ - https://www.cs.princeton.edu/courses/archive/spr05/cos423/lectures.php
+
+
+http://www.personal.kent.edu/~rmuhamma/Algorithms/MyAlgorithms/Dynamic/knapsackdyn.htm
+
