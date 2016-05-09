@@ -8,3 +8,4 @@ Princeton Univ - https://www.cs.princeton.edu/courses/archive/spr05/cos423/lectu
 
 http://www.personal.kent.edu/~rmuhamma/Algorithms/MyAlgorithms/Dynamic/knapsackdyn.htm
 
+Brian Dean - https://people.cs.clemson.edu/~bcdean/dp_practice/
