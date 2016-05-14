@@ -9,3 +9,11 @@ Princeton Univ - https://www.cs.princeton.edu/courses/archive/spr05/cos423/lectu
 http://www.personal.kent.edu/~rmuhamma/Algorithms/MyAlgorithms/Dynamic/knapsackdyn.htm
 
 Brian Dean - https://people.cs.clemson.edu/~bcdean/dp_practice/
+
+
+The Algorithm Design Manual -> http://www8.cs.umu.se/kurser/TDBA77/VT06/algorithms/BOOK/BOOK/NODE5.HTM
+
+Video Skiena's Algorithms Lectures -> http://www3.cs.stonybrook.edu/~algorith/video-lectures/
+
+
+https://tcsvideos.quora.com
