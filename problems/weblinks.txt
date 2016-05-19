@@ -17,3 +17,12 @@ Video Skiena's Algorithms Lectures -> http://www3.cs.stonybrook.edu/~algorith/vi
 
 
 https://tcsvideos.quora.com
+
+
+Practice question - http://www.cs.uwc.ac.za/~kschef/algc/
+
+Umesh V. Vazirani - http://www-inst.eecs.berkeley.edu/~cs170/fa06/
+ Chapters url DP —  https://www.cs.berkeley.edu/~vazirani/algorithms/chap6.pdf
+
+
+Math - http://math.ucdenver.edu/~rbyrne/flash.htm
