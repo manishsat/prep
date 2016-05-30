@@ -17,6 +17,7 @@ package my.prep.practice;
  *   								
  *   }
  * 
+ * O(n^2)
  */
 public class EditDistance {
 
@@ -45,11 +46,13 @@ public class EditDistance {
 		for(int i=0; i<dpmatrix.length;i++) {
 			for(int j=0;j<dpmatrix[0].length;j++) {
 				
-				if(i==0) dpmatrix[i][j] = j;
+				if(i==0) dpmatrix[i][j] = j; // if i =0 means emptry string -> string having j character require j times add
 				
-				else if(j==0) dpmatrix[i][j] = i;
+				else if(j==0) dpmatrix[i][j] = i; // from i char long string to emptry string we need to delete i chars.
 				
-				else if(a[i-1] == b[j-1]) {
+				else if(a[i-1] == b[j-1]) { // means char at i-1 and j-1 are equal
+					//now we need to worry about converting i-1 chars to j-1 which is available 
+					//at dpmatrix[i-1][j-1]
 					dpmatrix[i][j] = dpmatrix[i-1][j-1]; //copy from diagnal  upper - left
 				}else{
 					dpmatrix[i][j] = 1 + min (

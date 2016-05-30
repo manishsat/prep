@@ -22,7 +22,7 @@ public class Knapsack {
 		return memo[n][W];
 	}
 	
-	private void printItems(int[][] memo,int W,int n,int[] wt,int[] val) {
+	public void printItems(int[][] memo,int W,int n,int[] wt,int[] val) {
 		int i=n,j=W;
 		while(j != 0 && i >0) {
 			if(memo[i][j]!=memo[i-1][j]) {
@@ -73,6 +73,29 @@ public class Knapsack {
 		return memo[n][W];
 	}
 	
+	
+	public static int[][] internalMaxValueDP(int wt[],int val[],int W,int n) {
+		int[][] dp = new int[n+1][W+1];
+		
+		for(int i=0;i<=n;i++) {
+			for(int j=0;j<=W;j++) {
+				if(i==0||j==0) {
+					dp[i][j] = 0;
+				}else{
+					if(wt[i-1]>j) {
+						dp[i][j] = dp[i-1][j];
+					}else{
+						dp[i][j] = Math.max(dp[i-1][j],dp[i-1][j-wt[i-1]]+val[i-1]);
+					}
+				}
+				
+				
+			}
+			
+		}
+		return dp;
+	}
+	
 	public static void main(String[] args) {
 //		int[] wt = new int[] {1,2,3};
 //		int[] val = new int[]{6,10,12};
@@ -83,7 +106,11 @@ public class Knapsack {
 		int [] val = new int[]{10,40,30,50};
 		int W = 10;
 		Knapsack ks1 = new Knapsack();
+		
 		System.out.println("Max value = "+ks1.maxValue(wt, val, W, wt.length));
+		int[][] dp = ks1.internalMaxValueDP(wt, val, W, wt.length);
+		System.out.println("Max value = "+dp[dp.length-1][dp[0].length-1]);
+		ks1.printItems(dp, W, wt.length, wt, val);
 	}
 	
 	

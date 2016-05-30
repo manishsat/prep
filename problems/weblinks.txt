@@ -5,6 +5,7 @@ https://web.stanford.edu/class/cs97si/assn4.html
 
 Princeton Univ - https://www.cs.princeton.edu/courses/archive/spr05/cos423/lectures.php
 
+STANFORD - http://web.stanford.edu/class/cs97si/
 
 http://www.personal.kent.edu/~rmuhamma/Algorithms/MyAlgorithms/Dynamic/knapsackdyn.htm
 

@@ -27,7 +27,7 @@ public class KthLargestElement {
 	/*
 	 * Quick select is a part of Quick sort, where we select a pivot element and 
 	 * bring all smaller number to its left and bigger numbers to the right. 
-	 * 
+	 * Worst case O (n^2) Avg case is O(n)
 	 */
 	public static int largestQuickSelect(int a[],int left,int right,int k) {
 		
