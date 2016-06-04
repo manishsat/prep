@@ -25,5 +25,7 @@ Practice question - http://www.cs.uwc.ac.za/~kschef/algc/
 Umesh V. Vazirani - http://www-inst.eecs.berkeley.edu/~cs170/fa06/
  Chapters url DP —  https://www.cs.berkeley.edu/~vazirani/algorithms/chap6.pdf
 
+Hiring Library - http://www.hiringlibrary.com/category/technical-skills/
+
 
 Math - http://math.ucdenver.edu/~rbyrne/flash.htm
