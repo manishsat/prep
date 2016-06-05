@@ -23,6 +23,9 @@ public class MaxValueForCuttingRod {
 		}
 		return max;
 	}
+	/*
+	 * O(N^2) 
+	 */
 	
 	public static int findMaxPriceDP(int prices[],int rodLength) {
 		
