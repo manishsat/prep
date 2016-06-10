@@ -171,5 +171,11 @@ public class LongestSubSeq {
 		System.out.println("Length of lis is " + r.c + "\n" );
 		printSequenceNew((Integer[])r.a,(Integer[])r.b,A,(Integer)r.c);
 		
+		int B[] = { 25, 20, 18,15 , 14, 12, 8, 5, 2 };
+		r = longestSubSeqNew(B);
+		
+		System.out.println("Length of lis is " + r.c + "\n" );
+		printSequenceNew((Integer[])r.a,(Integer[])r.b,A,(Integer)r.c);
+		
 	}
 }
