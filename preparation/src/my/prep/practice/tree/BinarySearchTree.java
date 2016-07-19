@@ -87,6 +87,16 @@ public class BinarySearchTree<T extends Comparable<T>> {
 			
 		}
 		
+		public void preOrderTraversal(BinaryTreeNode root) {
+			if(root == null) {
+				return;
+			}
+			
+			System.out.println(root.getValue());
+			preOrderTraversal(root.getLeft());
+			preOrderTraversal(root.getRight());
+		}
+		
 		public static void main(String[] args) {
 			BinarySearchTree tree = new BinarySearchTree<Integer>(10);
 			tree.insert(5);
@@ -124,10 +134,10 @@ public class BinarySearchTree<T extends Comparable<T>> {
 		}
 		
 		public BinaryTreeNode convertLeavesNodesInLinkList() {
-			return internalConvertToList(root);
+			return internalconvertLeavesNodesInLinkList(root);
 		}
 		
-		private BinaryTreeNode internalConvertToList(BinaryTreeNode root) {
+		private BinaryTreeNode internalconvertLeavesNodesInLinkList(BinaryTreeNode root) {
 			if (root == null) return root;
 			
 			if(isLeafNode(root)) return root;
@@ -144,7 +154,7 @@ public class BinarySearchTree<T extends Comparable<T>> {
 			}
 			
 			if(leftnode == null)
-				leftnode = internalConvertToList(root.getLeft());
+				leftnode = internalconvertLeavesNodesInLinkList(root.getLeft());
 			
 			if(root.getRight() != null && isLeafNode(root.getRight())) {
 				//Root's right node is the leaf node 
@@ -154,12 +164,16 @@ public class BinarySearchTree<T extends Comparable<T>> {
 			}
 			
 			if(rightnode == null)
-			   rightnode = internalConvertToList(root.getRight());
+			   rightnode = internalconvertLeavesNodesInLinkList(root.getRight());
 			
+			BinaryTreeNode leftOfRight;
 			if(rightnode !=null) {
+				leftOfRight = rightnode;
+				while(leftOfRight.getLeft() != null) leftOfRight = leftOfRight.getLeft();
+				
 				if(leftnode != null) {
-					leftnode.setRight(rightnode);
-					rightnode.setLeft(leftnode);	
+					leftnode.setRight(leftOfRight);
+					leftOfRight.setLeft(leftnode);	
 				}
 				
 			}else{

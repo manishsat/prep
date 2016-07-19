@@ -5,7 +5,7 @@ public class Knapsack {
 	/* We have given an array of weights and their values, we have to pick items such that their
 	 * total weight can not exceed W (totcal capacity allowed to carry) with max value achieved.
 	 * 
-	 * M(i,j) = function to return max value of picking ith item with total j weigth
+	 * M(i,j) = function to return max value of picking ith item with total j weight
 	 * 
 	 *   M(i,j) = max{
 	 *   				M(i-1,j), Val[i] + M(i-1,j-wt[i])
@@ -47,15 +47,15 @@ public class Knapsack {
 			memo[n][W] = internalMaxValue(wt,val,W,n-1,memo);
 			return memo[n][W];
 		}
-		//else if weigth of the ith item if less then total weight
+		//else if weight of the ith item if less then total weight
 		
-		//Now we have 2 optuion either pick it and not pick it.
+		//Now we have 2 options either pick it and not pick it.
 		
 		int opt1 = 0;
 		if(memo[n-1][W]!=0) {
 			opt1 = memo[n][W];
 		}else{
-			opt1= internalMaxValue(wt, val, W, n-1,memo); //not pickint it
+			opt1= internalMaxValue(wt, val, W, n-1,memo); //not picking it
 			memo[n-1][W] = opt1;
 		}
 		

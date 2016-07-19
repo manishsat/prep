@@ -3,6 +3,19 @@ package my.prep.practice;
 public class CoinGame {
 	/*
 	 * Min Amount we can at least win when there are i...j coins left and it is our turn to pick.  
+	 * 
+	 * winAmout(i,j) =  {
+	 * 						
+	 * 						coins[i]  #if i == j means we have only 1 coin and its my turn to pick
+	 *                      Max(coins[i],coins[j]) # i==j-1 # means we have 2 coins and its my turn to pick.
+	 *                     max( 
+	 *                     			coins[i] + min ( winAmount(i+2,j) , winAmount(i+1,j-1))  #if I pick ith coin
+	 *                     
+	 *                     			coins[j] + min ( winAmount(i+1,j-1), winAmount(i,j-2)) # if I pick jth coin
+	 *                     )
+	 * 					
+	 * 
+	 * }
 	 */
 	public static int minWinningAmount(int coins[],int i,int j) {
 		if(i==j) return coins[i];

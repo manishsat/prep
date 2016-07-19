@@ -1,7 +1,7 @@
 package my.prep.practice;
 
 /**
- * LP(i,j) = longest palindrome between i...j
+ * LP(i,j) = longest palindrome sub sequence between i...j
  * 
  *  LP(i,j) = {
  *  				1 #i==j we have only 1 char
@@ -50,12 +50,46 @@ public class LongestPalindrome {
 		
 		return Math.max(logestPalindrome(a,i,j-1),logestPalindrome(a,i+1,j)); 
 	}
+	/**
+	 * O(N^2)
+	 * 
+	 * */
+	public static int longestPalindromeSubSeqDP(char[] a) {
+		int[][] dptable = new int[a.length][a.length];
+		
+		for(int index=0; index <a.length;index++) {
+			dptable[index][index] = 1;
+		}
+		
+		for(int len=2;len<=a.length;len++) {
+			for(int jump=0;jump+len<=a.length;jump++) {
+				int j = jump+len-1;
+				if(len == 2) {
+					if(a[jump] == a[j]) {
+						dptable[jump][j] = 2;
+					}else{
+						dptable[jump][j] = 1;
+					}
+				}else{
+					if(a[jump] == a[j]) {
+						dptable[jump][j] = 2+dptable[jump+1][j-1];
+					}else{
+						dptable[jump][j] = Math.max(dptable[jump][j-1],dptable[jump+1][j]);	
+					}
+				}
+			}
+		}
+		return dptable[0][a.length-1];
+	}
 	
 	public static void main(String[] args) {
 		 String seq = "GEEKSFORGEEKS";
-		 System.out.println("Longest Palindrome - " +logestPalindrome(seq.toCharArray(),0,seq.length()-1));
-		 String seq1 = "ABCD";
-		 System.out.println("Longest Palindrome - " +logestPalindrome(seq1.toCharArray(),0,seq1.length()-1));
+		 System.out.println("Longest Palindrome sub sequence - " +logestPalindrome(seq.toCharArray(),0,seq.length()-1));
+		 String seq1 = "agbdba";
+		 System.out.println("Longest Palindrome sub sequence - " +longestPalindromeSubSeqDP(seq1.toCharArray()));
+		 
+		 String seq2 = "ABCD";
+		 System.out.println("Longest Palindrome sub sequence x- " +logestPalindrome(seq2.toCharArray(),0,seq2.length()-1));
 		 
 	}
 }

@@ -35,16 +35,22 @@ public class KthLargestElement {
 			//right -left is going to gives use the size/number of elements in the range
 			//And if K is more then the range then obviously we can not find kth largest element.
 			int pos = partition(a,left,right);
+			
 			int noofEle_RightSide = right - pos;
+			
 			if(noofEle_RightSide == k-1) {
-				//k-1 is because pos could point to the 1st element wose index is 0
+				//k-1 is because partition index could be at 0  and right -0 would be right on above equation
+				//pos could point to the 1st element whose index is 0
 				//so if array is asc sorted and K = lenght -1 then kth largest element is the first one.
 				return a[pos];
 			}
 			
 			if(noofEle_RightSide <= k-1) {
 				//mean kth largest is on the left side of pos
-				return largestQuickSelect(a,left,right-1,k-1-noofEle_RightSide);
+				// and we need to reduce the K by number of elemen which are on right side
+				// let say we need to find 3rd larget and we got 2 elements on right side means now we need to find 1st largent on left side 
+				//which will be 3rd largest in the array.
+				return largestQuickSelect(a,left,pos-1,k-1-noofEle_RightSide);
 			}else{
 				return largestQuickSelect(a, pos +1,right,k);
 			}//otherwise kth on right side
