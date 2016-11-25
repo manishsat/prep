@@ -10,15 +10,20 @@ package my.prep.practice;
  *   EditDistance(s1,s2) = min {  EditSistance(s1-1,s2-1) + cost where 
  *   												cost = 0 if s1 == s2 else 1
  *								  ,
- *								  EditDistance(s1,s2-1) + 1  // if we can convert s1 to s2-1 and we need to Insert last charater
+ *								  EditDistance(s1,s2-1) + 1  // if we can convert s1 to s2-1 and we need to Insert last character
  *
  *								  ,
  *								  EditDistance(s1-1,s2) + 1	// if we can covert s1-1 to s2 and we just need to remove last char from s1	   								
  *   								
  *   }
- * 
- * O(n^2)
+ * Application: 
+ *    a. Used in spell check program to find closest word.
+ *    b. In computational biology to align two genes.
+ *    c. In speech recognition,  machine translations and information extraction.
+ *    
+ * Time complexity: O(n^2)
  */
+
 public class EditDistance {
 
 	public static int editDistance(char[] a,char[] b,int l1,int l2) {
@@ -46,14 +51,14 @@ public class EditDistance {
 		for(int i=0; i<dpmatrix.length;i++) {
 			for(int j=0;j<dpmatrix[0].length;j++) {
 				
-				if(i==0) dpmatrix[i][j] = j; // if i =0 means emptry string -> string having j character require j times add
+				if(i==0) dpmatrix[i][j] = j; // if i =0 means empty string -> string having j character require j times add
 				
-				else if(j==0) dpmatrix[i][j] = i; // from i char long string to emptry string we need to delete i chars.
+				else if(j==0) dpmatrix[i][j] = i; // from i char long string to empty string we need to delete i char.
 				
 				else if(a[i-1] == b[j-1]) { // means char at i-1 and j-1 are equal
 					//now we need to worry about converting i-1 chars to j-1 which is available 
 					//at dpmatrix[i-1][j-1]
-					dpmatrix[i][j] = dpmatrix[i-1][j-1]; //copy from diagnal  upper - left
+					dpmatrix[i][j] = dpmatrix[i-1][j-1]; //copy from diagonal  upper - left
 				}else{
 					dpmatrix[i][j] = 1 + min (
 							dpmatrix[i-1][j-1],

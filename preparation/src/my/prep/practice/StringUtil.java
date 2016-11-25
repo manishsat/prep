@@ -109,22 +109,6 @@ public class StringUtil {
 		return temp;
 	}
 	
-	public boolean isPowerOfTwo(int i) {
-		
-		if(i==0) {
-			return false;
-		}
-		
-		if(i == 1) {
-			return true;
-		}
-		
-		if(i % 2 == 1) {
-			return false;
-		}
-		
-		return isPowerOfTwo(i/2);
-	}
 	
 	public static void main(String[] args) {
 		System.out.println(2/5);
@@ -133,6 +117,19 @@ public class StringUtil {
 		String s1 = "";
 		printcombination(s1.toCharArray(), 0, s1.length()-1);
 		printcombination(null, 0, s1.length()-1);
+		
+		char[][] digitmap = {
+                {'0','0','0',' '}, //0
+                {'1','1','1',' '},//1
+                {'a','b','c',' '},//2
+                {'d','e','f',' '},//3
+                {'g','h','i',' '},//4
+                {'j','k','l',' '},//5
+                {'m','n','o',' '},//6
+                {'p','q','r','s'},//7
+                {'t','u','v',' '},//8
+                {'w','x','y','z'}//9
+            };
 	}
 	
 	

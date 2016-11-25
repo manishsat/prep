@@ -187,5 +187,47 @@ public class BinarySearchTree<T extends Comparable<T>> {
 			else return (node.getLeft() == null && node.getRight() == null);
 		}
 		
+		//O(N)
+		
+		public boolean isBST(BinaryTreeNode<Integer> root) {
+			if(root == null) return false;
+			return isBSTInternal(root,Integer.MIN_VALUE,Integer.MAX_VALUE);
+		}
+		
+		private boolean isBSTInternal(BinaryTreeNode<Integer> root,int min ,int max) {
+			if(root == null) return true;
+			if(root.getValue() > min && root.getValue() < max) {
+				return isBSTInternal(root.getLeft(),min,root.getValue()) && isBSTInternal(root.getRight(),root.getValue(),max);
+			}else{
+				return false;
+			}
+			
+			
+		}
+		//Q. Find whether if a Given Binary Tree is Balanced?
+		//max difference of height is left subtree and right subtree is 1.
+		
+		//O(n)
+		public boolean isBalanced(BinaryTreeNode<Integer> root) {
+			if(isBalancedInternal(root) == -1) return false;
+			
+			return true;
+		}
+		
+		private int isBalancedInternal(BinaryTreeNode<Integer> root) {
+			
+			if(root == null) return 0;
+			
+			int leftHeight = isBalancedInternal(root.getLeft());
+			int rightHeight =  isBalancedInternal(root.getRight());
+			
+			if(leftHeight == -1 || rightHeight == -1) return -1;
+			
+			if(Math.abs(leftHeight - rightHeight) > 1) return -1;
+		
+			return Math.max(leftHeight, rightHeight) + 1;
+		}
+		
+		
 		
 }
