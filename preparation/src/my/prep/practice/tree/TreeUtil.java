@@ -153,4 +153,16 @@ public class TreeUtil {
 		return 1 + (Math.max(leftDepth, rightDepth));
 		
 	}
+	
+	public boolean isIdentical(BinaryTreeNode<Integer> root1, BinaryTreeNode<Integer> root2) {
+		
+		if(root1 == null && root2 == null) {
+			return true;
+		}
+		if(root1 == null || root2 == null) {
+			return false;
+		}
+		
+		return (root1.getValue() == root2.getValue()) && isIdentical(root1.getLeft(), root2.getLeft()) && isIdentical(root1.getRight(), root2.getRight());
+	}
 }

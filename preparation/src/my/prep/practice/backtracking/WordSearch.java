@@ -10,7 +10,10 @@ public class WordSearch {
 	public static void main(String[] args) {
 		
 	}
-	
+	//ReferenceL http://www.cnblogs.com/zhuli19901106/p/3570506.html
+	//O(N^2 len(word)<-- I don'	t know how?
+	//Video: https://www.youtube.com/watch?v=FFQ-nbul6VY
+	//O(8 ^n*n)
 	public boolean search(String word) {
 		
 		boolean[][] solutionMatrix = new boolean[wordMatrix.length][wordMatrix[0].length];

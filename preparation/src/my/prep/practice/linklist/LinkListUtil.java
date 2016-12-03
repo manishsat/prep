@@ -1,9 +1,32 @@
 package my.prep.practice.linklist;
 
 import java.util.HashSet;
+import java.util.Stack;
 
 public class LinkListUtil {
 	
+	public static void main(String[] args) {
+		
+		int arr[] = {1,2,3,4,5,6,7,8,9,10,11,12,13,14};
+		//DoublyLinkList dList = new DoublyLinkList();
+		LinkList list = new LinkList();
+		for(int i:arr) {
+			list.addNode(i);
+		}
+		
+//		dList.print();
+//		DoublyLinkListNode root = convertDLLToBST(dList.getHead());
+//		printInorderOrderTraversalHelper(root);
+//		
+		list.print();
+		list.setNewHead(rotateRight(list.getHead(), 14));
+		list.print();
+		list.setNewHead(swapPairs(list.getHead()));
+		list.print();
+		list.setNewHead(swapPairs(list.getHead()));
+		list.print();
+	}
+
 	public boolean isLoopInLinkLIst(LinkListNode head) {
 		LinkListNode slow = head;
 		LinkListNode fast = head;
@@ -254,19 +277,7 @@ public class LinkListUtil {
 	
 	
 	
-	public static void main(String[] args) {
-		
-		int arr[] = {1,2,3,4,5,6,7};
-		DoublyLinkList dList = new DoublyLinkList();
-		
-		for(int i:arr) {
-			dList.addNode(i);
-		}
-		
-		dList.print();
-		DoublyLinkListNode root = convertDLLToBST(dList.getHead());
-		printInorderOrderTraversalHelper(root);
-	}
+	
 	
 	private static void printInorderOrderTraversalHelper(DoublyLinkListNode root) {
 		if (root == null) {
@@ -279,6 +290,9 @@ public class LinkListUtil {
 	}
 
 	//Dup?
+	//We are traversing both the lists and in worst case if both the list are of same size then 
+	//Time complexity O(N) + O(M)
+	//M and N is the length of the lists.
 	public static LinkListNode mergeTwoSortedList(LinkListNode head1, LinkListNode head2) {
 		if(head1 ==null) return head2;
 		if(head2 == null) return head1;
@@ -296,6 +310,91 @@ public class LinkListUtil {
 			result.setNext(mergeTwoSortedList(head1.getNext(), head2.getNext()));
 		}
 		return result;
+	}
+	
+	//Q. Delete duplicate-value nodes from a sorted linked list
+	public LinkListNode deleteDups(LinkListNode head) {
+		if(head == null) return null;
+		LinkListNode ptr = head;
+	    while(ptr !=null && ptr.getNext() !=null) {
+	    	LinkListNode nextPtr = ptr.getNext();
+	        while(nextPtr!=null && nextPtr.getValue() == ptr.getValue()) {
+	            ptr.setNext(nextPtr.getNext());
+	            nextPtr = nextPtr.getNext();
+	        }
+	        ptr = ptr.getNext();
+	    }
+	    return head;
+	}
+	//How many rotations? more then the length of the list?
+	//O(N)
+	public static LinkListNode rotateRight(LinkListNode head, int rotations) {
+	    if(head == null) return null;
+	    
+	    int length = getLength(head);
+	    rotations = rotations % length;
+	    return rotateToRight(head,rotations);
+	    
+	}
+	
+	private static  LinkListNode rotateToRight(LinkListNode head, int rotations) {
+		if(head == null) return null;
+		if(rotations <= 0) return head;
+		
+		LinkListNode behindPtr = head;
+	    LinkListNode aheadPtr = head;
+	    Stack<LinkListNode> stack = new Stack<LinkListNode>();
+	    for(int i=0;i<rotations;i++) {
+	        aheadPtr = aheadPtr.getNext();;
+	    }
+	    while(aheadPtr.getNext() != null) {
+	        aheadPtr = aheadPtr.getNext();
+	        //stack.push(aheadPtr);
+	        behindPtr = behindPtr.getNext();
+	    }
+	    
+	    LinkListNode temp = behindPtr.getNext();
+	    behindPtr.setNext(null);
+	    aheadPtr.setNext(head);
+	    head = temp;
+	    return head;
+	}
+	private static int getLength(LinkListNode head) {
+		if(head == null) return 0;
+		int length = 0;
+		LinkListNode node = head;
+		while(node!=null) {
+			length++;
+			node = node.getNext();
+		}
+		return length;
+	}
+	//Q Given a linked list, swap every two adjacent nodes and return its head.
+	//what should I do if there are odd number of nodes? Leave the last node as it is? I assume
+	//O(N)
+	public static LinkListNode swapPairs(LinkListNode a) {
+	    
+	    if(a == null) return a;
+	    LinkListNode head = a;
+	    LinkListNode temp = null;
+	    LinkListNode prev = null;
+	    while(head!=null && head.getNext()!=null) {
+	       temp =  head.getNext().getNext();
+	       head.getNext().setNext(head);
+	      
+	       if(prev!=null) {
+	            
+	           prev.setNext(head.getNext());
+	       }else{
+	           prev = head;
+	           a = head.getNext();
+	       }
+	       head.setNext(temp);
+	       prev = head;
+	       head = temp;
+	    }
+	    return a;
+	    
 	}
 	
 }

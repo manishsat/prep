@@ -55,4 +55,7 @@ public class LinkList {
 	public LinkListNode getHead() {
 		return head;
 	}
+	public void setNewHead(LinkListNode head) {
+		this.head = head;
+	}
 }
