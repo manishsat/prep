@@ -10,9 +10,9 @@ import my.prep.practice.tree.BinaryTreeNode;
 
 public class NumberUtil {
 		public static void main(String[] args) {
-			int number = 85463;
+			int number = 586390350;
 			System.out.println("Factors ->" + allFactors(number));
-			
+			System.out.println("Prime Factors ->" + allPrimeFactors(number));
 			int n = 530751374;
 			int num=54;
 			num %=1003;
@@ -77,6 +77,31 @@ public class NumberUtil {
 		       
 		    }
 		    return val;
+		}
+		
+		public static List<Integer> allPrimeFactors(int number) {
+			List<Integer> primeFactors = new ArrayList<Integer>();
+			//first divide by 2 as mush as we can 
+			int n = number;
+			//O(log N)
+			while(n%2 == 0) {
+				primeFactors.add(2);
+				n = n /2;
+			}
+		    int sqrt = (int)Math.sqrt(number);
+			//after the above loop n has to be odd
+			
+			
+			for(int i=3;i<=sqrt;i=i+2) {
+					while(n%i==0) {
+						primeFactors.add(i);
+						n=n/i;
+					}
+			}
+			
+			//here n has to be 1 or prime number
+			if(n>2) primeFactors.add(n);
+			return primeFactors;
 		}
 	
 

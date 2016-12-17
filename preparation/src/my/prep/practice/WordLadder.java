@@ -1,6 +1,8 @@
 package my.prep.practice;
 
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.HashSet;
 import java.util.LinkedList;
 import java.util.Map;
 import java.util.Queue;
@@ -102,6 +104,78 @@ public class WordLadder {
 				s = path.get(target);
 			}
 		}
+	}
+	
+	public static ArrayList<ArrayList<String>> findAllPaths(String start,String end, HashSet<String> dict) {
+		
+		HashMap<String,ArrayList<String>> parentMap = new HashMap<String,ArrayList<String>>();
+		
+		if(start == end || start.equals(end)) {
+			addOrUpdateParentList(start,end,parentMap);
+			ArrayList<ArrayList<String>> result = new ArrayList<ArrayList<String>>();
+			result.add(parentMap.get(start));
+			return result;
+		}
+		
+		Queue<String> queue = new LinkedList<String>();
+		addOrUpdateParentList(start,start,parentMap);
+		queue.offer(start);
+		while(!queue.isEmpty()) {
+			String word = queue.poll();
+			
+			if(word.equals(end)) {
+				continue;//found the word no need to go forward from here
+			}
+			char[] chs = word.toCharArray();
+			for(int i=0; i<chs.length;i++) {
+				char oldChar = chs[i];
+				for(char c = 'a'; c<='z';c++) {
+					chs[i] = c;
+					String nextWord = String.valueOf(chs);
+					if(dict.contains(nextWord)) {
+						//valid word
+						
+						queue.offer(nextWord);
+						addOrUpdateParentList(nextWord,word,parentMap);
+					}
+				}
+				chs[i] = oldChar; // put the char back;
+			}
+		}
+		return parentPaths(start,end,parentMap);
+	}
+	
+	private static void addOrUpdateParentList(String child, String parent, HashMap<String,ArrayList<String>> parentMap ) {
+		assert(child !=null);
+		assert (parent != null);
+		assert (parentMap != null);
+		if(!parentMap.containsKey(child)) {
+			ArrayList<String> plist = new ArrayList<String>();
+			plist.add(parent);
+			parentMap.put(child, plist);
+		}else{
+			parentMap.get(child).add(parent);
+		}
+		
+	}
+	
+	private static ArrayList<ArrayList<String>> parentPaths(String start, String end, HashMap<String,ArrayList<String>> parentMap) {
+		ArrayList<ArrayList<String>> paths = new ArrayList<ArrayList<String>>();
+		if(start == end || start.equals(end)) {
+			ArrayList<String> plist = new ArrayList<String>();
+			plist.add(start);
+			paths.add(plist);
+			return paths;
+		}else if(parentMap.containsKey(end)) {
+			for(String s : parentMap.get(end)) {
+				ArrayList<ArrayList<String>> list = parentPaths(start,s,parentMap);
+				for(ArrayList<String> p : list) {
+					p.add(end);
+					paths.add(p);
+				}
+			}
+		}
+		return paths;
 	}
 
 }

@@ -34,4 +34,7 @@ public class BinaryTreeNode<T extends Comparable> {
 		return right;
 		
 	}
+	public String toString() {
+		return String.valueOf(value);
+	}
 }

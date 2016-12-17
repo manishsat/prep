@@ -1,4 +1,4 @@
-package my.prep.practice.binarysearch;
+	package my.prep.practice.binarysearch;
 
 public class Solution {
 	public static void main(String[] args) {
@@ -68,6 +68,7 @@ public class Solution {
 			//Duplicates?
 			//You are given a target value to search. If found in the array, return its index, otherwise return -1.
 			public static int searchInSortedArray(int[] arr,int value) {
+				if(arr == null) return -1;
 				int leftIndex = 0;
 				int rightIndex = arr.length -1;
 				

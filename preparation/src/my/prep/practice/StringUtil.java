@@ -2,6 +2,28 @@ package my.prep.practice;
 
 public class StringUtil {
 	
+	public static void main(String[] args) {
+		System.out.println(2/5);
+		String s = "1234";
+		printcombination(s.toCharArray(), 0, s.length()-1);
+		String s1 = "";
+		printcombination(s1.toCharArray(), 0, s1.length()-1);
+		printcombination(null, 0, s1.length()-1);
+		
+		char[][] digitmap = {
+                {'0','0','0',' '}, //0
+                {'1','1','1',' '},//1
+                {'a','b','c',' '},//2
+                {'d','e','f',' '},//3
+                {'g','h','i',' '},//4
+                {'j','k','l',' '},//5
+                {'m','n','o',' '},//6
+                {'p','q','r','s'},//7
+                {'t','u','v',' '},//8
+                {'w','x','y','z'}//9
+            };
+	}
+	
 	public static boolean isPalindrome(char[] a) {
 		
 		for(int i =0,j=a.length-1;i<j;i++,j--) {
@@ -110,27 +132,7 @@ public class StringUtil {
 	}
 	
 	
-	public static void main(String[] args) {
-		System.out.println(2/5);
-		String s = "1234";
-		printcombination(s.toCharArray(), 0, s.length()-1);
-		String s1 = "";
-		printcombination(s1.toCharArray(), 0, s1.length()-1);
-		printcombination(null, 0, s1.length()-1);
-		
-		char[][] digitmap = {
-                {'0','0','0',' '}, //0
-                {'1','1','1',' '},//1
-                {'a','b','c',' '},//2
-                {'d','e','f',' '},//3
-                {'g','h','i',' '},//4
-                {'j','k','l',' '},//5
-                {'m','n','o',' '},//6
-                {'p','q','r','s'},//7
-                {'t','u','v',' '},//8
-                {'w','x','y','z'}//9
-            };
-	}
+	
 	
 	
 	

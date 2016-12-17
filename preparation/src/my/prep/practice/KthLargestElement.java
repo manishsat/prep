@@ -1,6 +1,31 @@
 package my.prep.practice;
 
+import java.util.Comparator;
+import java.util.PriorityQueue;
+
 public class KthLargestElement {
+	
+	public static void main(String[] args) {
+		int arr[] = {12, 3, 5, 7, 4, 19, 26};
+		System.out.println("3rd larget element = "+KthLargestElement.largestElement(arr, 3)) ;
+		System.out.println("3rd larget element = "+KthLargestElement.largestQuickSelect(arr,0,arr.length-1, 3)) ;
+		System.out.println("3rd larget element (min Heap) = "+KthLargestElement.findKthLargest(arr,3));
+		int arr1[] = {12, 3, 5, 7, 19};
+		System.out.println("3rd larget element = "+KthLargestElement.largestElement(arr1, 4)) ;
+		System.out.println("3rd larget element = "+KthLargestElement.largestQuickSelect(arr1,0,arr1.length-1, 4)) ;
+		System.out.println("3rd larget element (min Heap) = "+KthLargestElement.findKthLargest(arr1,4));
+		
+		int arr2[] = {12, 3, 5, 7, 4, 26, 19};
+		System.out.println("3rd larget element = "+KthLargestElement.largestElement(arr2, 1)) ;
+		System.out.println("3rd larget element = "+KthLargestElement.largestQuickSelect(arr2,0,arr2.length-1, 1)) ;
+		System.out.println("3rd larget element (min Heap) = "+KthLargestElement.findKthLargest(arr2,1));
+		
+		int arr3[] = {5, 3, 7, 1,  4, 20, 25};
+		System.out.println("3rd larget element = "+KthLargestElement.largestElement(arr3, 7)) ;
+		System.out.println("3rd larget element = "+KthLargestElement.largestQuickSelect(arr3,0,arr3.length-1, 7)) ;
+		System.out.println("3rd larget element (min Heap) = "+KthLargestElement.findKthLargest(arr3,3));
+		System.out.println("3rd smallest element (min Heap) = "+KthLargestElement.findKthSmallest(arr3,3));
+	}
 
 	//O(kn)
 	public static int largestElement(int[] a,int k) {
@@ -58,7 +83,6 @@ public class KthLargestElement {
 		}
 		return Integer.MAX_VALUE;
 	}
-	
 	private static int partition(int a[], int left,int right) {
 		int pivot = a[right];
 		int i = left;
@@ -73,29 +97,60 @@ public class KthLargestElement {
 		return i; //  This is the index where pivot will go and all the element will be smaller then pivot
 	}
 	
+	// Using minHeap
+	//To construct min heap we need to go through the whole array and for every element we need to insert into heap 
+	//which may require log(k) since maximum total k elements are in the heap.
+	//O(nlogk)
+	public static int findKthLargest(int[] nums, int k) {
+	    PriorityQueue<Integer> q = new PriorityQueue<Integer>(k);
+	    for(int i: nums){
+	        q.offer(i);
+	 
+	        if(q.size()>k){
+	            q.poll();
+	        }
+	    }
+	 
+	    return q.peek();
+	}
+	
+	public static int findKthSmallest(int[] nums, int k) {
+		 PriorityQueue<Integer> q = new PriorityQueue<Integer>(k,new Comparator<Integer>() {
+
+			@Override
+			public int compare(Integer o1, Integer o2) {
+				// TODO Auto-generated method stub
+				if(o1 > o2) {
+					return -1;
+				}else if (o1 < o2) {
+					return 1;
+				}else {
+					return 0;
+				}
+					
+			}
+		}) ;
+		 
+		 for(int i:nums) {
+			 if(q.offer(i)) {
+				 if(q.size() > k) {
+					 q.poll();
+				 }
+			 }else{
+				 throw new RuntimeException("queue is full");
+			 }
+		 }
+		 
+		 return q.peek();
+	}
+	
+	
+	
 	private static void swapArrayElement(int a[],int i,int j) {
 		int temp = a[i];
 		a[i] = a[j];
 		a[j] = temp;	
 	}
 	
-	public static void main(String[] args) {
-		int arr[] = {12, 3, 5, 7, 4, 19, 26};
-		System.out.println("3rd larget element = "+KthLargestElement.largestElement(arr, 3)) ;
-		System.out.println("3rd larget element = "+KthLargestElement.largestQuickSelect(arr,0,arr.length-1, 3)) ;
-		
-		int arr1[] = {12, 3, 5, 7, 19};
-		System.out.println("3rd larget element = "+KthLargestElement.largestElement(arr1, 4)) ;
-		System.out.println("3rd larget element = "+KthLargestElement.largestQuickSelect(arr1,0,arr1.length-1, 4)) ;
-		
-		
-		int arr2[] = {12, 3, 5, 7, 4, 26, 19};
-		System.out.println("3rd larget element = "+KthLargestElement.largestElement(arr2, 1)) ;
-		System.out.println("3rd larget element = "+KthLargestElement.largestQuickSelect(arr2,0,arr2.length-1, 1)) ;
-		
-		int arr3[] = {1, 3, 5, 7, 4, 20, 25};
-		System.out.println("3rd larget element = "+KthLargestElement.largestElement(arr3, 7)) ;
-		System.out.println("3rd larget element = "+KthLargestElement.largestQuickSelect(arr3,0,arr3.length-1, 7)) ;
-		
-	}
+	
 }

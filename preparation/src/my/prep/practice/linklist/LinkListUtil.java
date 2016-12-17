@@ -26,7 +26,14 @@ public class LinkListUtil {
 		list.setNewHead(swapPairs(list.getHead()));
 		list.print();
 	}
-
+	
+	
+	public boolean isPalindrome(LinkListNode root) {
+		
+	}
+	//Q. detect is link list contains loop?
+	//Q. to Ask, how big is the linklist? And how to solve if link list is too big to fit in the memory.
+	
 	public boolean isLoopInLinkLIst(LinkListNode head) {
 		LinkListNode slow = head;
 		LinkListNode fast = head;
