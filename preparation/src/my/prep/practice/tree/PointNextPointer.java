@@ -97,7 +97,7 @@ public class PointNextPointer {
 			pointNextPointerRecursiceInternal(right.left,right.right);
 			
 			Node n1 = left.right;
-			Node n2 = left.next.left;
+			Node n2 = right.left;
 			while(n1!=null) {
 				n1.next = n2;
 				n1 = n1.right;
