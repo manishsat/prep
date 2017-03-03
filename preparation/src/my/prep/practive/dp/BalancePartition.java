@@ -1,4 +1,4 @@
-package my.prep.practice;
+package my.prep.practive.dp;
 /**
  *In Balanced Partition problem,you have a set of n integers each in the range 0 … K. 
  * Partition these integers into two subsets such that you minimize |S1 – S2|, 

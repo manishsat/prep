@@ -1,18 +1,36 @@
-package my.prep.practice;
+package my.prep.practive.dp;
+
+/* We have given an array of weights and their values, we have to pick items such that their
+ * total weight can not exceed W (totcal capacity allowed to carry) with max value achieved.
+ * 
+ * M(i,j) = function to return max value of picking ith item with total j weight
+ * 
+ *   M(i,j) = max{
+ *   				M(i-1,j), Val[i] + M(i-1,j-wt[i])
+ *   			  } 
+ * 
+ * So have to choose between picking the ith item and not picking the ith item.
+ * */
 
 public class Knapsack {
 	
-	/* We have given an array of weights and their values, we have to pick items such that their
-	 * total weight can not exceed W (totcal capacity allowed to carry) with max value achieved.
-	 * 
-	 * M(i,j) = function to return max value of picking ith item with total j weight
-	 * 
-	 *   M(i,j) = max{
-	 *   				M(i-1,j), Val[i] + M(i-1,j-wt[i])
-	 *   			  } 
-	 * 
-	 * So have to choose between picking the ith item and not picking the ith item.
-	 * */
+	
+	public static void main(String[] args) {
+//		int[] wt = new int[] {1,2,3};
+//		int[] val = new int[]{6,10,12};
+//		int W = 5;
+//		Knapsack ks = new Knapsack();
+//		System.out.println("Max value = "+ks.maxValue(wt, val, W, wt.length));
+		int[] wt = new int[] {5,4,6,3};
+		int [] val = new int[]{10,40,30,50};
+		int W = 10;
+		Knapsack ks1 = new Knapsack();
+		
+		System.out.println("Max value = "+ks1.maxValue(wt, val, W, wt.length));
+		int[][] dp = ks1.internalMaxValueDP(wt, val, W, wt.length);
+		System.out.println("Max value = "+dp[dp.length-1][dp[0].length-1]);
+		ks1.printItems(dp, W, wt.length, wt, val);
+	}
 	
 	public int maxValue(int wt[],int val[],int W,int n) {
 	
@@ -96,22 +114,7 @@ public class Knapsack {
 		return dp;
 	}
 	
-	public static void main(String[] args) {
-//		int[] wt = new int[] {1,2,3};
-//		int[] val = new int[]{6,10,12};
-//		int W = 5;
-//		Knapsack ks = new Knapsack();
-//		System.out.println("Max value = "+ks.maxValue(wt, val, W, wt.length));
-		int[] wt = new int[] {5,4,6,3};
-		int [] val = new int[]{10,40,30,50};
-		int W = 10;
-		Knapsack ks1 = new Knapsack();
-		
-		System.out.println("Max value = "+ks1.maxValue(wt, val, W, wt.length));
-		int[][] dp = ks1.internalMaxValueDP(wt, val, W, wt.length);
-		System.out.println("Max value = "+dp[dp.length-1][dp[0].length-1]);
-		ks1.printItems(dp, W, wt.length, wt, val);
-	}
+	
 	
 	
 

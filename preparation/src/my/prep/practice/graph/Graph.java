@@ -1,7 +1,10 @@
 package my.prep.practice.graph;
 
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
+import java.util.Set;
 import java.util.TreeSet;
 
 public class Graph<T> {
@@ -36,6 +39,32 @@ public class Graph<T> {
 		if(!hasVertex(vertex1) || !hasVertex(vertex2)) return false;
 		
 		return adjacencyList.get(vertex1).contains(vertex2);
+	}
+	
+	public boolean hasEdge(Edge<T> edge) {
+		Set<GraphNode<T>> neighbors = adjacencyList.get(edge.fromNode().getVertex());
+		return neighbors.contains(edge.toNode());
+	}
+	
+	
+	public void removeEdge(Edge<T> edge) {
+		adjacencyList.get(edge.fromNode().getVertex()).remove(edge.toNode());
+	}
+	public int getEdgeCount() {
+		int edgeCount = 0;
+		for(Map.Entry<T, TreeSet<GraphNode<T>>> entry : adjacencyList.entrySet()) {
+			edgeCount+=entry.getValue().size();
+		}
+		
+		return edgeCount;
+	}
+	
+	public List<GraphNode<T>> getAllVertecies() {
+		List<GraphNode<T>> list = new ArrayList<GraphNode<T>>();
+		for(Map.Entry<T,GraphNode<T>> entry : vertices.entrySet()) {
+			list.add(entry.getValue());
+		}
+		return list;
 	}
 	
 	public boolean addEdge(T fromVertex, T toVertex,int weight) {

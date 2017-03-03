@@ -1,4 +1,4 @@
-package my.prep.practice.linklist;
+ package my.prep.practice.linklist;
 
 import java.util.HashSet;
 import java.util.Stack;
@@ -7,29 +7,97 @@ public class LinkListUtil {
 	
 	public static void main(String[] args) {
 		
-		int arr[] = {1,2,3,4,5,6,7,8,9,10,11,12,13,14};
+		int arr[] = {1,2,3,3,2,1};
 		//DoublyLinkList dList = new DoublyLinkList();
 		LinkList list = new LinkList();
 		for(int i:arr) {
 			list.addNode(i);
 		}
-		
+		list.print();
+		System.out.println("Is Palindrome " + isPalindrome(list.getHead()));
+		list.print();
 //		dList.print();
 //		DoublyLinkListNode root = convertDLLToBST(dList.getHead());
 //		printInorderOrderTraversalHelper(root);
 //		
-		list.print();
-		list.setNewHead(rotateRight(list.getHead(), 14));
-		list.print();
-		list.setNewHead(swapPairs(list.getHead()));
-		list.print();
-		list.setNewHead(swapPairs(list.getHead()));
-		list.print();
+//		list.print();
+//		list.setNewHead(rotateRight(list.getHead(), 14));
+//		list.print();
+//		list.setNewHead(swapPairs(list.getHead()));
+//		list.print();
+//		list.setNewHead(swapPairs(list.getHead()));
+//		list.print();
 	}
 	
 	
-	public boolean isPalindrome(LinkListNode root) {
+	public static boolean isPalindrome(LinkListNode head) {
+		if(head == null) return false;
+		if(head.getNext() == null) return true; //single node
+		//Get the Middle Node
+		LinkListNode slow = head;
+		LinkListNode prev = null;//this will point to prev of slow.
+		LinkListNode fast = head;
+		while(fast!=null && fast.getNext() != null){
+			prev = slow;
+			slow = slow.getNext();
+			fast = fast.getNext().getNext();
+		}
+		prev.setNext(null);
+		LinkListNode half = null;
+		if(fast == null) {
+			//even case
+			half = reverseLinkList(slow);
+		}else{
+			//odd case
+			half = reverseLinkList(slow.getNext());
+		}
+		boolean result = compareLinkList(head,half);
+		//re attach the first half with second half and reverse the second half again.
+		half = reverseLinkList(half);
+		if(fast!=null) {
+			prev.setNext(slow);
+			slow.setNext(half);
+		}else{
+			prev.setNext(half);
+		}
+		return result;
+	}
+	
+	private static boolean compareLinkList(LinkListNode head1, LinkListNode head2) {
+		if(head1 == null || head2 == null) return false;
+		while(head1!=null && head2!=null) {
+			if(head1.getValue() != head2.getValue()) return false;
+			head1 = head1.getNext();
+			head2 = head2.getNext();
+		}
+		return (head1!=null || head2 != null) ? false : true;
+	}
+	
+	private static LinkListNode reverseLinkList(LinkListNode head) {
+		LinkListNode prev = null;
+		LinkListNode currentNode = head;
+		LinkListNode nextNode = head.getNext();
+		//loop through the linklist and keep reversing it (in place)
 		
+		while(currentNode != null) {
+			currentNode.setNext(prev);;
+			prev = currentNode;
+			currentNode = nextNode;
+			if(nextNode!= null)nextNode = nextNode.getNext();
+		}
+		
+		return prev;
+	}
+	
+	private static LinkListNode getMiddleNode(LinkListNode head) {
+		assert(head!=null);
+		LinkListNode slow = head;
+		LinkListNode fast = head;
+		while(fast!=null && fast.getNext() != null){
+			slow = slow.getNext();
+			fast = fast.getNext();
+		}
+		return slow;
 	}
 	//Q. detect is link list contains loop?
 	//Q. to Ask, how big is the linklist? And how to solve if link list is too big to fit in the memory.
@@ -171,6 +239,8 @@ public class LinkListUtil {
 	    return middle;	
 		
 	}
+	
+
 	
 	private static DoublyLinkListNode getMiddleNode(DoublyLinkListNode head) {
 		

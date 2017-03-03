@@ -25,6 +25,9 @@ public class Edge<T> {
 		return node2;
 	}
 	
+	public int getWeight() {
+		return weight;
+	}
 	public boolean isBetween(GraphNode<T> node1, GraphNode<T> node2) {
 		return (this.node1 == node1 && this.node2 == node2);
 	}

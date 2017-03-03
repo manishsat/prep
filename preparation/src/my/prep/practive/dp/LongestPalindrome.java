@@ -1,4 +1,4 @@
-package my.prep.practice;
+package my.prep.practive.dp;
 
 /**
  * LP(i,j) = longest palindrome sub sequence between i...j

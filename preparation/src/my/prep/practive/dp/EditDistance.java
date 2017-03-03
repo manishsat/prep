@@ -1,4 +1,4 @@
-package my.prep.practice;
+package my.prep.practive.dp;
 
 /**
  *  Convert String a to String b by either 
@@ -26,6 +26,7 @@ package my.prep.practice;
 
 public class EditDistance {
 
+	//Time complexcity O(3^min(m,n))
 	public static int editDistance(char[] a,char[] b,int l1,int l2) {
 		
 		if(l2 ==0)  return l1;

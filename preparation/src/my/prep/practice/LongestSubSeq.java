@@ -22,6 +22,54 @@ import java.util.Arrays;
  */
 public class LongestSubSeq {
 
+	public static void main(String[] args) {
+		int arr[] = { 10, 22, 9, 33, 21, 50, 41, 60 };
+		Result r = longestSubSequence( arr );
+		System.out.println("Length of lis is " + r.b + "\n" );
+		printSequence((Integer[])r.a,(Integer)r.b,arr);
+		
+		System.out.println("Length of lis is (recursive) " + LIS(arr) + "\n" );
+		
+//		int A[] = { 2, 5, 3, 7, 11, 8, 10, 13, 6 };
+//		r = longestSubSequence( A );
+//		System.out.println("Length of lis is " + r.b + "\n" );
+//		printSequence((Integer[])r.a,(Integer)r.b,A);
+//		
+//		r = longestSubSeqNew(A);
+//		
+//		System.out.println("Length of lis is " + r.c + "\n" );
+//		printSequenceNew((Integer[])r.a,(Integer[])r.b,A,(Integer)r.c);
+//		
+//		int B[] = { 25, 20, 18,15 , 14, 12, 8, 5, 2 };
+//		r = longestSubSeqNew(B);
+//		
+//		System.out.println("Length of lis is " + r.c + "\n" );
+//		printSequenceNew((Integer[])r.a,(Integer[])r.b,B,(Integer)r.c);
+//		
+		
+		
+		
+		
+	}
+	//O(n!)
+	public static int LIS(int[] arr) {
+		if(arr== null) throw new IllegalArgumentException("arr can not be null");
+		return LISHelper(arr,0,arr.length-1);
+	}
+	private static int LISHelper(int[] arr,int startIndex,int endIndex) {
+		if(startIndex == endIndex) return 1;
+		int lastElementIndex = endIndex;
+		int maxLis = 0;
+		while(startIndex < lastElementIndex) {
+			if(arr[endIndex] > arr[lastElementIndex-1]) {
+				maxLis = Math.max(maxLis, LISHelper(arr,startIndex,lastElementIndex-1 )+1);
+			}
+			lastElementIndex --;
+		}
+		return maxLis;
+		
+	}
+	
 	public static Result longestSubSequence(int[] a) {
 		
 		Integer[] lis = new Integer[a.length]; //this will keep lis of all elements ending at i where 0<=i<a.length
@@ -155,27 +203,5 @@ public class LongestSubSeq {
 		
 		return -1;
 	}
-	public static void main(String[] args) {
-		int arr[] = { 10, 22, 9, 33, 21, 50, 41, 60 };
-		Result r = longestSubSequence( arr );
-		System.out.println("Length of lis is " + r.b + "\n" );
-		printSequence((Integer[])r.a,(Integer)r.b,arr);
-		
-		int A[] = { 2, 5, 3, 7, 11, 8, 10, 13, 6 };
-		r = longestSubSequence( A );
-		System.out.println("Length of lis is " + r.b + "\n" );
-		printSequence((Integer[])r.a,(Integer)r.b,A);
-		
-		r = longestSubSeqNew(A);
-		
-		System.out.println("Length of lis is " + r.c + "\n" );
-		printSequenceNew((Integer[])r.a,(Integer[])r.b,A,(Integer)r.c);
-		
-		int B[] = { 25, 20, 18,15 , 14, 12, 8, 5, 2 };
-		r = longestSubSeqNew(B);
-		
-		System.out.println("Length of lis is " + r.c + "\n" );
-		printSequenceNew((Integer[])r.a,(Integer[])r.b,A,(Integer)r.c);
-		
-	}
+	
 }

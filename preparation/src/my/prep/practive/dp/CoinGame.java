@@ -1,4 +1,4 @@
-package my.prep.practice;
+package my.prep.practive.dp;
 
 public class CoinGame {
 	/*

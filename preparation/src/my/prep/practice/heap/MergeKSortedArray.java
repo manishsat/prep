@@ -23,8 +23,11 @@ public class MergeKSortedArray {
 		for(int i=0;i<arrays.length;i++) {
 			size = size + arrays[i].length;
 		}
+		
 		int mergedArray[]= new int[size];
+		
 		PriorityQueue<ArrayNode> pq = new PriorityQueue<ArrayNode>();
+		
 		for(int i=0;i<arrays.length;i++) {
 			pq.add(new ArrayNode(i,0,arrays[i][0]));
 		}

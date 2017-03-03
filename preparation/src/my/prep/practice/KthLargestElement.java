@@ -58,7 +58,7 @@ public class KthLargestElement {
 		
 		if(k >0 && k <=right -left + 1) {
 			//right -left is going to gives use the size/number of elements in the range
-			//And if K is more then the range then obviously we can not find kth largest element.
+			//And if K is more than the range. Then obviously we can not find kth largest element.
 			int pos = partition(a,left,right);
 			
 			int noofEle_RightSide = right - pos;

@@ -1,4 +1,4 @@
-package my.prep.practice;
+package my.prep.practive.dp;
 /**
  * Longest common sub sequence between two String S, T
  * 

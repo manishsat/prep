@@ -1,4 +1,4 @@
-package my.prep.practice;
+package my.prep.practive.dp;
 
 /*
  * http://articles.leetcode.com/the-painters-partition-problem/

@@ -27,6 +27,9 @@ public class GraphNode<T> {
 		return false;
 	}
 	
+	public boolean hasEdge(Edge<T> edge) {
+		return edges.contains(edge);
+	}
 	public boolean addEdge(int weight, GraphNode<T> node) {
 		if(!hasEdge(node)) {
 			Edge<T> edge = new Edge<T>(this,node,weight);
@@ -44,6 +47,12 @@ public class GraphNode<T> {
 	
 	public List<Edge<T>> getEdges() {
 		return edges;
+	}
+	
+	public void removeEdge(Edge<T> edge) {
+		if(hasEdge(edge)) {
+			edges.remove(edge);
+		}
 	}
 	@Override
 	public boolean equals(Object obj) {

@@ -1,8 +1,10 @@
-package my.prep.practice;
+package my.prep.practive.dp;
 
 
 import java.util.ArrayList;
 import java.util.List;
+
+import my.prep.practice.MaxValue;
 
 
 public class MaxValueForCuttingRod {

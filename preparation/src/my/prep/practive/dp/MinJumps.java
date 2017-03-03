@@ -1,4 +1,7 @@
-package my.prep.practice;
+package my.prep.practive.dp;
+
+import java.util.Arrays;
+
 /*
  * Given an array of integers where each element represents the max number of steps that can be made forward from that element. 
  * Write a function to return the minimum number of jumps to reach the end of the array (starting from the first element). 
@@ -20,10 +23,10 @@ package my.prep.practice;
 
 
 public class MinJumps {
-
+    //O(n!)
 	public static int minjump(int arr[],int start,int end) {
 		//base condition
-		if(start == end -1) return 1;
+		if(start == end -1) return 1; // you have reached 1 step before the last step you just need to one more step to reach to an end.
 		
 		if(arr[start] ==0) return Integer.MAX_VALUE;
 		
@@ -73,6 +76,8 @@ public class MinJumps {
 	
 	public static void main(String[] args) {
 		int arr[] = {1, 3, 5, 8, 9, 2, 6, 7, 6, 8, 9};
+		System.out.println(Arrays.toString(arr));
+		
 		minJumps(arr);
 		System.out.println("\nMin Jump (recursive) "+minjump(arr, 0, arr.length-1));
 	}

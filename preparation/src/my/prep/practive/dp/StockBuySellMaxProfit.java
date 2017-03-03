@@ -1,4 +1,4 @@
-package my.prep.practice;
+package my.prep.practive.dp;
 
 /**
  * Maximum profit by buying and selling a share at most k times 
