@@ -92,4 +92,45 @@ public class LongestPalindrome {
 		 System.out.println("Longest Palindrome sub sequence x- " +logestPalindrome(seq2.toCharArray(),0,seq2.length()-1));
 		 
 	}
+	
+	public static String longestPalindrome(String s) {
+        /*
+            S(i,j) = {
+                    True if s[i] == s[j] && S(i+1, j-1)
+                    else false
+                    
+                        
+            }
+        */
+        
+        if(s==null || s.length() <= 1) {
+            return s;
+        }
+        char[] c = s.toCharArray();
+        int stringLength = c.length;
+        boolean[][] palindromeMarix = new boolean[stringLength][stringLength];
+        
+        int maxPanlindromeLength  = 0;
+        String palindromeString = "";
+        
+        for(int endIdx = 0; endIdx < stringLength; endIdx++ ) {
+            
+            for(int startIdx = 0;  startIdx <= endIdx; startIdx++) {
+                
+                boolean isStartEndMatching = (c[startIdx] == c[endIdx]);
+                
+                int substringLength = endIdx - startIdx;
+                
+                
+                palindromeMarix[startIdx][endIdx] = (substringLength > 2) ? (palindromeMarix[startIdx + 1][endIdx - 1] && isStartEndMatching) : isStartEndMatching;
+                
+                if(palindromeMarix[startIdx][endIdx] && substringLength + 1 > maxPanlindromeLength) {
+                    maxPanlindromeLength = substringLength + 1;
+                    palindromeString = s.substring(startIdx, endIdx + 1);
+                }
+            }
+        }
+        
+        return palindromeString;
+    }
 }
