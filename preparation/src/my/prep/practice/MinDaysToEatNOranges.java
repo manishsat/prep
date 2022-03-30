@@ -1,3 +1,4 @@
+package my.prep.practice;
 /*
 There are n oranges in the kitchen and you decided to eat some of these oranges every day as follows:
 
@@ -10,8 +11,9 @@ Given the integer n, return the minimum number of days to eat n oranges.
 
 Leet code 1553 - HARD
 */
+import java.util.*;
 
-public class EatOranges {
+class EatOranges {
     public static void main(String[] args) {
         EatOranges e = new EatOranges();
         System.out.println(e.minDays(10));

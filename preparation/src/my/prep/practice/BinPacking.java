@@ -1,3 +1,6 @@
+package my.prep.practice;
+import java.util.*;
+
 public class BinPacking {
     /*
     Given n items of different weights and bins each of capacity c, assign each item to a bin such that number of total used bins is minimized. 

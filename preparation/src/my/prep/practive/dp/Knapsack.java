@@ -92,7 +92,7 @@ public class Knapsack {
 	}
 	
 	
-	public static int[][] internalMaxValueDP(int wt[],int val[],int W,int n) {
+	public  int[][] internalMaxValueDP(int wt[],int val[],int W,int n) {
 		int[][] dp = new int[n+1][W+1];
 		
 		for(int i=0;i<=n;i++) {

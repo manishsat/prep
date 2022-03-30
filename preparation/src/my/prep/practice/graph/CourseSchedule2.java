@@ -1,3 +1,5 @@
+package my.prep.practice.graph;
+import java.util.*;
 class CourseSchedule2 {
   
   /*
@@ -75,10 +77,7 @@ class CourseSchedule2 {
         return indegree;
     }
   
-  public static void main(Start[] arg) {
-    int numCourses = 2;
-    int prerequisites = {{1,0}};
-    
+  public static void main(String[] arg) {    
     int numCourses1 = 4;
     int [][] prerequisites1 = {{1,0},{2,0},{3,1},{3,2}};
     CourseSchedule2 cs = new CourseSchedule2();
